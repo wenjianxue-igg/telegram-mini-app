@@ -40,6 +40,8 @@
 
             // 处理发送数据按钮点击事件
             document.getElementById("sendDataButton").addEventListener("click", () => {
+                tg.MainButton.text = "Main Button！！！";
+            tg.MainButton.show();
                 const data = { message: "Hello from Web App!" };
                 // tg.sendData(JSON.stringify(data));
                 // 调用 Telegram 支付 API
