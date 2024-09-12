@@ -44,16 +44,7 @@
             tg.MainButton.show();
                 const data = { message: "Hello from Web App!" };
                 // tg.sendData(JSON.stringify(data));
-                // 调用 Telegram 支付 API
-            tg.openInvoice({
-                title: "Product Name",
-                description: "Product Description",
-                payload: "unique_payload",
-                provider_token: "",
-                start_parameter: "",
-                currency: "XTR",
-                prices: [{ label: "Product", amount: 1 }] // 价格以最小货币单位表示（例如：1000 表示 $10.00）
-            });
+                
             });
 
             // 处理关闭按钮点击事件
@@ -64,6 +55,16 @@
             // 监听 Web App 的关闭事件
             tg.onEvent("mainButtonClicked", () => {
                 alert("Main button clicked!");
+                // 调用 Telegram 支付 API
+                    tg.openInvoice({
+                    title: "Product Name",
+                    description: "Product Description",
+                    payload: "unique_payload",
+                    provider_token: "",
+                    start_parameter: "",
+                    currency: "XTR",
+                    prices: [{ label: "Product", amount: 1 }] // 价格以最小货币单位表示（例如：1000 表示 $10.00）
+                });
             });
 
             // 监听 Web App 的关闭事件
