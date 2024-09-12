@@ -54,6 +54,7 @@
 
             // 监听 Web App 的关闭事件
             tg.onEvent("mainButtonClicked", () => {
+                tg.setHeaderColor("#ffffff")
                 alert("Main button clicked!");
                 // 调用 Telegram 支付 API
                     tg.openInvoice({
