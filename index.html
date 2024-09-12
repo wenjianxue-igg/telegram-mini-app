@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <script src="https://telegram.org/js/games.js"></script>
         <script src="https://telegram.org/js/telegram-web-app.js"></script>
         <meta charset="UTF-8" />
         <link rel="icon" type="image/svg+xml" href="/vite.svg" />
@@ -22,5 +23,55 @@
     <h1>我的第一个标题!!!!</h1>
     <p>我的第一个段落。</p>
     <button onclick="TelegramGameProxy.shareScore()">Share score</button>
+ <script>
+        // 检查是否在 Telegram Web App 环境中
+        if (window.Telegram.WebApp) {
+            const tg = window.Telegram.WebApp;
+
+            // 初始化 Web App
+            tg.ready();
+
+            // 设置 Web App 的背景颜色
+            tg.setBackgroundColor("#ffffff");
+            tg.setHeaderColor("#FF0000")
+            // 设置 Web App 的主按钮
+            tg.MainButton.text = "Main Button";
+            tg.MainButton.show();
+
+            // 处理发送数据按钮点击事件
+            document.getElementById("sendDataButton").addEventListener("click", () => {
+                const data = { message: "Hello from Web App!" };
+                tg.sendData(JSON.stringify(data));
+            });
+
+            // 处理关闭按钮点击事件
+            document.getElementById("closeButton").addEventListener("click", () => {
+                tg.close();
+            });
+
+            // 监听 Web App 的关闭事件
+            tg.onEvent("mainButtonClicked", () => {
+                alert("Main button clicked!");
+            });
+
+            // 监听 Web App 的关闭事件
+            tg.onEvent("backButtonClicked", () => {
+                alert("Back button clicked!");
+            });
+
+            // 监听 Web App 的关闭事件
+            tg.onEvent("viewportChanged", (viewport) => {
+                console.log("Viewport changed:", viewport);
+            });
+
+            // 监听 Web App 的关闭事件
+            tg.onEvent("themeChanged", (theme) => {
+                console.log("Theme changed:", theme);
+            });
+        } else {
+            alert("This page is not running inside Telegram Web App.");
+        }
+    </script>
+    
 </body>
 </html>
